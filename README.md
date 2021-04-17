@@ -17,14 +17,13 @@
 ### Association
 
 has_many :items 
-belongs_to :destination 
+has_many :user_items
 
 
 ## destination テーブル
 
 |Column           |	Type        | Options                        |
 | --------------- | -------     | ------------------------------ |
-|user_id          |	references	| null: false, foreign_key: true |
 |post_code	      | string      |	null: false                    |
 |prefecture_id    | integer     |	null: false                    | 
 |city             | string      |	null: false                    |
@@ -36,7 +35,8 @@ belongs_to :destination
 ### Association
 
 belongs_to :user
-has many :items
+has_many :items
+has_one :user_item
 
 
 ## items テーブル
@@ -46,18 +46,29 @@ has many :items
 | name               | string      | null: false                    |
 | price              | integer     | null: false                    |
 | description        | text        | null: false                    |
-| status_id          | string      | null: false                    |
-| shipping_cost_id   | string      | null: false                    |
-| shipping_day_id    | string      | null: false                    |
-| prefecture_id      | string      | null: false                    |
-| category_id        | integer     | null: false, foreign_key: true |
-| user_id            | integer     | null: false, foreign_key: true |
+| status_id          | integer     | null: false                    |
+| shipping_cost_id   | integer     | null: false                    |
+| shipping_day_id    | integer     | null: false                    |
+| prefecture_id      | integer     | null: false                    |
+| category_id        | integer     | null: false                    |
+| user               | references  | null: false, foreign_key: true |
 
 ### Association
 
 belongs_to :user 
 has_one :destination
+has_one :user_item
 
 
+## user_items テーブル
+
+=> user_id, item_id を保存できればOK
+
+| Column             | Type        | Options                        |
+| ------------------ | ------      | ------------------------------ |
+| user_id            | references  | null: false, foreign_key: true |
+| item_id            | references  | null: false, foreign_key: true |
+
+has_one :destinations
 
 
