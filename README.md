@@ -18,7 +18,6 @@
 
 has_many :items 
 belongs_to :destination 
-belongs_to :card 
 
 
 ## destination テーブル
@@ -52,16 +51,12 @@ has many :items
 | shipping_day_id    | string      | null: false                    |
 | prefecture_id      | string      | null: false                    |
 | category_id        | integer     | null: false, foreign_key: true |
-| brand_id           | integer     | null: false, foreign_key: true |
 | user_id            | integer     | null: false, foreign_key: true |
 
 ### Association
 
 belongs_to :user 
-belongs_to :category 
 has_one :destination
-has_many :likes 
-has_one :shipping
 
 
 
