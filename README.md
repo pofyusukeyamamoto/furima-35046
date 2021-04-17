@@ -34,7 +34,7 @@ has_many :user_items
 
 ### Association
 
-has_one :user_item
+belongs_to:user_item
 
 
 ## items テーブル
@@ -53,7 +53,7 @@ has_one :user_item
 
 ### Association
 
-belongs_to :user_item
+has_one :user_item
 
 
 ## user_items テーブル
@@ -66,6 +66,8 @@ belongs_to :user_item
 
 ### Association
 
+belongs_to :user
 has_one :destinations
+has_one :items
 
 
