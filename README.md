@@ -17,24 +17,7 @@
 ### Association
 
 has_many :items 
-has_many :user_items
-
-
-## destination テーブル
-
-|Column           |	Type        | Options                        |
-| --------------- | -------     | ------------------------------ |
-|post_code	      | string      |	null: false                    |
-|prefecture_id    | integer     |	null: false                    | 
-|city_id          | string      |	null: false                    |
-|address_id	      | string	    | null: false                    |
-|building_name_id | string	    |                                |
-|phone_number_id  | string	    | null: false                    |
-
-
-### Association
-
-belongs_to:user_item
+has_many :purchase_records
 
 
 ## items テーブル
@@ -53,21 +36,45 @@ belongs_to:user_item
 
 ### Association
 
-has_one :user_item
+belongs_to :user
+has_one :purchase_record
 
 
-## user_items テーブル
+## purchase_record テーブル
 
 
 | Column             | Type        | Options                        |
 | ------------------ | ------      | ------------------------------ |
-| user            | references  | null: false, foreign_key: true |
-| item            | references  | null: false, foreign_key: true |
+| user               | references  | null: false, foreign_key: true |
+| item               | references  | null: false, foreign_key: true |
 
 ### Association
 
 belongs_to :user
-has_one :destinations
-has_one :items
+belongs_to :item
+has_one :destination
+
+
+## destination テーブル
+
+|Column           |	Type        | Options                        |
+| --------------- | -------     | ------------------------------ |
+|post_code	      | string      |	null: false                    |
+|prefecture_id    | integer     |	null: false                    | 
+|city             | string      |	null: false                    |
+|address  	      | string	    | null: false                    |
+|building_name    | string	    |                                |
+|phone_number     | string	    | null: false                    |
+|purchase_record  | references  | null: false, foreign_key:true  |
+
+
+### Association
+
+belongs_to:purchase_record
+
+
+
+
+
 
 
