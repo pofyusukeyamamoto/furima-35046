@@ -131,13 +131,23 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
+
+      it 'パスワードが空の場合は登録できない' do
+        @user.password = ''
+        @user.password_confirmation = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password can't be blank")
+      end
     end
 
-    context '登録できる場合' do
+
+    
+
+     context '登録できる場合' do
       it '情報が全て入っていれば登録できる' do
         expect(@user).to be_valid
       end
-    end
+     end
   end
 end
 
